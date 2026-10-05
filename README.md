@@ -2,6 +2,10 @@
 
 ### Build a vocabulary that stays with you.
 
+## Live Demo
+
+https://vocabflow-production.up.railway.app
+
 VocabFlow is a full-stack vocabulary learning web application designed to help users discover, learn, save, and practice new words through an interactive learning experience.
 
 The application combines a Java Spring Boot backend with a responsive HTML, CSS, and JavaScript frontend and uses MySQL for persistent user and vocabulary data.
