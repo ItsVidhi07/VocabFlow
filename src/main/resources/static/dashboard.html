@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VocabFlow — Build Your Vocabulary</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-mark">V</div>
+
+            <div>
+                <h1>VocabFlow</h1>
+                <span>Build your vocabulary</span>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+
+            <button class="nav-item active" data-section="dashboard">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item" data-section="learn">
+                <span class="nav-icon">◈</span>
+                <span>Learn</span>
+            </button>
+
+            <button class="nav-item" data-section="quiz">
+                <span class="nav-icon">✦</span>
+                <span>Quiz</span>
+            </button>
+
+            <button class="nav-item" data-section="saved">
+                <span class="nav-icon">♡</span>
+                <span>Saved Words</span>
+            </button>
+
+            <button class="nav-item" data-section="progress">
+                <span class="nav-icon">↗</span>
+                <span>Progress</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="daily-card">
+                <div class="daily-top">
+                    <span>Daily goal</span>
+                    <strong id="daily-goal-text">0 / 5</strong>
+                </div>
+
+                <div class="goal-bar">
+                    <div class="goal-fill" id="daily-goal-fill"></div>
+                </div>
+
+                <p id="daily-goal-message">Learn 5 words today.</p>
+            </div>
+
+            <div class="profile-mini">
+                <div class="avatar">V</div>
+
+                <div>
+                    <strong>Learner</strong>
+                    <span>Vocabulary explorer</span>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top bar -->
+        <header class="topbar">
+
+            <div class="mobile-brand">
+                <div class="brand-mark">V</div>
+                <strong>VocabFlow</strong>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="streak">
+                    <span>✦</span>
+                    <strong>3 day streak</strong>
+                </div>
+
+                <button class="profile-button">
+                    <span class="avatar small">V</span>
+                </button>
+
+            </div>
+            
+            <button id="logout-button" class="logout-button">
+                Logout
+            </button>
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page-section active-section">
+
+            <div class="welcome-section">
+
+                <div>
+                    <p class="eyebrow">YOUR LEARNING SPACE</p>
+
+                    <h2>
+                        Grow your vocabulary,<br>
+                        <span>one word at a time.</span>
+                    </h2>
+
+                    <p class="welcome-text">
+                        Discover useful words, remember them better,
+                        and track your progress as you learn.
+                    </p>
+                </div>
+
+                <button class="primary-button" data-go="learn">
+                    Continue learning
+                    <span>→</span>
+                </button>
+
+            </div>
+
+
+            <!-- Stats -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">W</div>
+                    <div>
+                        <span>Words learned</span>
+                        <strong id="words-learned">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✓</div>
+                    <div>
+                        <span>Quiz accuracy</span>
+                        <strong id="quiz-accuracy">0%</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">♡</div>
+                    <div>
+                        <span>Saved words</span>
+                        <strong id="saved-count">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">↗</div>
+                    <div>
+                        <span>Current streak</span>
+                        <strong id="current-streak">0 days</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Continue + Daily -->
+            <div class="dashboard-grid">
+
+                <div class="panel continue-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">CONTINUE LEARNING</p>
+                            <h3>Today's word</h3>
+                        </div>
+
+                        <button class="text-button" data-go="learn">
+                            View all →
+                        </button>
+                    </div>
+
+                    <div id="dashboard-word" class="featured-word">
+
+                        <div class="word-meta">
+                            <span class="difficulty advanced">ADVANCED</span>
+                            <span>Adjective</span>
+                        </div>
+
+                        <h4>Loading...</h4>
+
+                        <p class="featured-meaning">
+                            Fetching your vocabulary...
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel goal-panel">
+
+                    <div class="progress-ring-wrapper">
+
+                        <div class="progress-ring">
+                            <svg viewBox="0 0 120 120">
+                                <circle
+                                    class="ring-bg"
+                                    cx="60"
+                                    cy="60"
+                                    r="50">
+                                </circle>
+
+                                <circle
+                                    id="goal-ring"
+                                    class="ring-progress"
+                                    cx="60"
+                                    cy="60"
+                                    r="50">
+                                </circle>
+                            </svg>
+
+                            <div class="ring-content">
+                                <strong>60%</strong>
+                                <span>complete</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <p class="eyebrow">TODAY'S PROGRESS</p>
+                        <h3>Keep the flow going.</h3>
+                        <p>
+                            You're making steady progress.
+                            A few more minutes can make a difference.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LEARN -->
+        <section id="learn" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <p class="eyebrow">LEARNING MODE</p>
+                    <h2>Learn new words</h2>
+                    <p>
+                        Explore vocabulary and build your personal word bank.
+                    </p>
+                </div>
+
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input
+                        id="search-input"
+                        type="text"
+                        placeholder="Search a word..."
+                    >
+                </div>
+
+            </div>
+
+
+            <div id="search-results" class="search-results"></div>
+
+
+            <div class="learning-layout">
+
+                <div class="learning-card">
+
+                    <div class="learning-top">
+
+                        <span id="learn-category" class="category-pill">
+                            Personality
+                        </span>
+
+                        <button
+                            id="save-word-button"
+                            class="save-button"
+                            title="Save word">
+                            ♡
+                        </button>
+
+                    </div>
+
+
+                    <div id="learning-content">
+
+                        <div class="word-meta">
+                            <span id="learn-difficulty"
+                                  class="difficulty advanced">
+                                ADVANCED
+                            </span>
+
+                            <span id="learn-part">
+                                Adjective
+                            </span>
+                        </div>
+
+                        <h2 id="learn-word">Meticulous</h2>
+
+                        <p id="learn-meaning" class="large-meaning">
+                            Showing great attention to detail; very careful
+                            and precise.
+                        </p>
+
+                        <div class="example-box">
+                            <span>EXAMPLE</span>
+
+                            <p id="learn-example">
+                                She was meticulous when checking the
+                                final report.
+                            </p>
+                        </div>
+
+                        <div class="synonyms-section">
+
+                            <span>SYNONYMS</span>
+
+                            <div id="learn-synonyms"
+                                 class="synonyms-list">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="learning-actions">
+
+                        <button
+                            id="learning-known"
+                            class="secondary-button">
+                            I know this
+                        </button>
+
+                        <button
+                            id="next-word"
+                            class="primary-button">
+                            Next word →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="word-list-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">WORD BANK</p>
+                            <h3>Explore</h3>
+                        </div>
+
+                        <span id="word-count">0 words</span>
+                    </div>
+
+                    <div id="word-list" class="word-list">
+                        <!-- JavaScript will populate this -->
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ -->
+        <section id="quiz" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <p class="eyebrow">CHECK YOUR MEMORY</p>
+                    <h2>Vocabulary quiz</h2>
+                    <p>
+                        Test how well you remember the words you've learned.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="quiz-card">
+
+                <div class="quiz-progress">
+
+                    <span id="quiz-number">Question 1 of 5</span>
+
+                    <div class="quiz-bar">
+                        <div id="quiz-progress-fill"></div>
+                    </div>
+
+                </div>
+
+                <div id="quiz-content">
+
+                    <span class="quiz-label">WHAT DOES THIS WORD MEAN?</span>
+
+                    <h3 id="quiz-word">Loading...</h3>
+
+                    <div id="quiz-options" class="quiz-options">
+                        <!-- Options generated by JavaScript -->
+                    </div>
+
+                </div>
+
+                <div id="quiz-result" class="quiz-result hidden">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SAVED -->
+        <section id="saved" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <p class="eyebrow">YOUR COLLECTION</p>
+                    <h2>Saved words</h2>
+                    <p>
+                        Words you want to remember and revisit later.
+                    </p>
+                </div>
+
+            </div>
+
+            <div id="saved-empty" class="empty-state">
+
+                <div class="empty-icon">♡</div>
+
+                <h3>Your word collection is empty</h3>
+
+                <p>
+                    Save interesting words while learning and they'll
+                    appear here.
+                </p>
+
+                <button class="primary-button" data-go="learn">
+                    Discover words →
+                </button>
+
+            </div>
+
+            <div id="saved-list" class="saved-grid"></div>
+
+        </section>
+
+
+        <!-- PROGRESS -->
+        <section id="progress" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <p class="eyebrow">YOUR JOURNEY</p>
+                    <h2>Your progress</h2>
+                    <p>
+                        See how your vocabulary journey is developing.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="progress-overview">
+
+                <div class="progress-main-card">
+
+                    <div>
+                        <p class="eyebrow">WORDS MASTERED</p>
+                        <strong id="progress-total">0</strong>
+                        <span>words in your learning journey</span>
+                    </div>
+
+                    <div class="big-progress">
+                        <div
+                            class="big-progress-fill"
+                            id="big-progress-fill">
+                        </div>
+                    </div>
+
+                    <div class="progress-labels">
+                        <span>Starting</span>
+                        <span>Building</span>
+                        <span>Fluent</span>
+                    </div>
+
+                </div>
+
+
+                <div class="progress-stat">
+
+                    <span class="progress-stat-icon">✦</span>
+
+                    <strong>3</strong>
+
+                    <span>day streak</span>
+
+                </div>
+
+                <div class="progress-stat">
+
+                    <span class="progress-stat-icon">✓</span>
+
+                    <strong id="progress-accuracy">0%</strong>
+
+                    <span>quiz accuracy</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- Mobile bottom navigation -->
+<nav class="mobile-nav">
+
+    <button class="mobile-nav-item active" data-section="dashboard">
+        <span>⌂</span>
+        Home
+    </button>
+
+    <button class="mobile-nav-item" data-section="learn">
+        <span>◈</span>
+        Learn
+    </button>
+
+    <button class="mobile-nav-item" data-section="quiz">
+        <span>✦</span>
+        Quiz
+    </button>
+
+    <button class="mobile-nav-item" data-section="saved">
+        <span>♡</span>
+        Saved
+    </button>
+
+</nav>
+
+
+<script src="\js\app.js"></script>
+<script src="/js/auth.js"></script>
+
+</body>
+</html>

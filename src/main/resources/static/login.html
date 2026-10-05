@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In — VocabFlow</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="auth-page">
+
+    <main class="auth-layout">
+
+        <section class="auth-brand-panel">
+
+            <a href="/" class="brand">
+                <span class="brand-mark">V</span>
+                <span>VocabFlow</span>
+            </a>
+
+            <div class="auth-brand-content">
+
+                <span class="section-label">
+                    WELCOME BACK
+                </span>
+
+                <h1>
+                    Keep your
+                    <span>flow going.</span>
+                </h1>
+
+                <p>
+                    Pick up where you left off and keep building
+                    vocabulary that actually stays with you.
+                </p>
+
+            </div>
+
+            <div class="auth-quote">
+                <span>“</span>
+                Every word you learn gives you another way to think.
+            </div>
+
+        </section>
+
+
+        <section class="auth-form-panel">
+
+            <div class="auth-form-container">
+
+                <div class="auth-mobile-brand">
+
+                    <a href="/" class="brand">
+                        <span class="brand-mark">V</span>
+                        <span>VocabFlow</span>
+                    </a>
+
+                </div>
+
+
+                <div class="auth-heading">
+
+                    <span class="section-label">
+                        SIGN IN
+                    </span>
+
+                    <h2>Welcome back.</h2>
+
+                    <p>
+                        Continue your vocabulary journey.
+                    </p>
+
+                </div>
+
+
+                <form id="login-form" class="auth-form">
+
+                    <div class="form-field">
+
+                        <label for="usernameOrEmail">
+                            Username or email
+                        </label>
+
+                        <input
+                            type="text"
+                            id="usernameOrEmail"
+                            name="usernameOrEmail"
+                            placeholder="Enter your username or email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="login-password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="login-password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div
+                        id="login-message"
+                        class="auth-message hidden">
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="auth-submit-button">
+
+                        Sign in
+                        <span>→</span>
+
+                    </button>
+
+                </form>
+
+
+                <p class="auth-switch">
+                    Don't have an account?
+                    <a href="/register.html">Create one</a>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="/js/auth.js"></script>
+
+</body>
+</html>

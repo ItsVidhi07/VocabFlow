@@ -1,0 +1,17 @@
+# Maven
+target/
+
+# VS Code
+.vscode/
+
+# IntelliJ
+.idea/
+
+# Compiled Java files
+*.class
+
+# Local configuration
+application-local.properties
+
+# Database credentials
+src/main/resources/application.properties
